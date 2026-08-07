@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{PROJECT_TITLE}} — Proposal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer-min.js"></script>
+<style>
+  :root {
+    --ink: #1a1d21; --sub: #565d66; --line: #e2e5e9; --accent: #b5551b;
+    --bg: #ffffff; --panel: #f7f8f9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #e8eaed; --sub: #9aa1ab; --line: #2c3036; --bg: #16181b; --panel: #1e2124; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  .sheet { max-width: 880px; margin: 0 auto; padding: 48px 32px 80px; }
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 20px; margin-bottom: 32px; }
+  header h1 { margin: 0 0 6px; font-size: 26px; }
+  header .meta { color: var(--sub); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+  section { margin: 36px 0; }
+  h2 { font-size: 16px; text-transform: uppercase; letter-spacing: .04em; color: var(--sub); margin: 0 0 14px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  th { color: var(--sub); font-weight: 600; width: 34%; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: .03em; }
+  .tag.confirmed { background: #1f7a4720; color: #1f7a47; }
+  .tag.judgment { background: #b5551b20; color: var(--accent); }
+  ol.flow { padding-left: 20px; }
+  ol.flow li { margin: 6px 0; }
+  model-viewer { width: 100%; height: 420px; background: var(--panel); border-radius: 6px; border: 1px solid var(--line); }
+  .viewer-caption { color: var(--sub); font-size: 12px; margin-top: 8px; }
+  .gallery { display: flex; gap: 12px; flex-wrap: wrap; }
+  .gallery img { width: calc(50% - 6px); border-radius: 6px; border: 1px solid var(--line); }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--sub); font-size: 13px; }
+  @media print {
+    body { background: #fff; color: #000; }
+    model-viewer { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <h1>{{PROJECT_TITLE}}</h1>
+    <div class="meta">
+      <span>Prepared for {{CLIENT_PLACEHOLDER}}</span>
+      <span>{{DATE_PLACEHOLDER}}</span>
+      <span>Rev. {{REV_PLACEHOLDER}}</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Confirmed Requirements</h2>
+    <table>
+      <!-- one row per confirmed input; nothing here should be a guess -->
+      <tr><th>{{PARAM_1}}</th><td>{{VALUE_1}}</td></tr>
+      <tr><th>{{PARAM_2}}</th><td>{{VALUE_2}}</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Proposed Technical Solution</h2>
+    <table>
+      <!-- mark each row confirmed vs. engineering judgment — see mechanical-concept-brief skill -->
+      <tr><th><span class="tag judgment">judgment</span> {{DECISION_1}}</th><td>{{RATIONALE_1}}</td></tr>
+      <tr><th><span class="tag confirmed">confirmed</span> {{DECISION_2}}</th><td>{{RATIONALE_2}}</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>System Flow</h2>
+    <ol class="flow">
+      <li>{{STEP_1}}</li>
+      <li>{{STEP_2}}</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3D Concept</h2>
+    <model-viewer src="model/sample.glb" camera-controls auto-rotate
+      shadow-intensity="1" exposure="1" alt="3D concept model">
+    </model-viewer>
+    <div class="viewer-caption">Drag to rotate, scroll to zoom. Replace <code>model/sample.glb</code> with your own export.</div>
+  </section>
+
+  <footer>
+    Prepared by {{PREPARED_BY}}. This is a first-pass concept — assumptions marked
+    "judgment" above are open to correction.
+  </footer>
+</div>
+</body>
+</html>

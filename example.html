@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Machine-Vision Wheel ID Conveyor — Proposal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer-min.js"></script>
+<style>
+  :root {
+    --ink: #1a1d21; --sub: #565d66; --line: #e2e5e9; --accent: #b5551b;
+    --bg: #ffffff; --panel: #f7f8f9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #e8eaed; --sub: #9aa1ab; --line: #2c3036; --bg: #16181b; --panel: #1e2124; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  .sheet { max-width: 880px; margin: 0 auto; padding: 48px 32px 80px; }
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 20px; margin-bottom: 32px; }
+  header h1 { margin: 0 0 6px; font-size: 26px; }
+  header .meta { color: var(--sub); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+  section { margin: 36px 0; }
+  h2 { font-size: 16px; text-transform: uppercase; letter-spacing: .04em; color: var(--sub); margin: 0 0 14px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  th { color: var(--sub); font-weight: 600; width: 34%; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: .03em; margin-right: 6px; }
+  .tag.confirmed { background: #1f7a4720; color: #1f7a47; }
+  .tag.judgment { background: #b5551b20; color: var(--accent); }
+  ol.flow { padding-left: 20px; }
+  ol.flow li { margin: 6px 0; }
+  model-viewer { width: 100%; height: 380px; background: var(--panel); border-radius: 6px; border: 1px solid var(--line); }
+  .viewer-caption { color: var(--sub); font-size: 12px; margin-top: 8px; }
+  .gallery { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .gallery img { width: calc(33.33% - 8px); border-radius: 6px; border: 1px solid var(--line); }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--sub); font-size: 13px; }
+  @media print {
+    body { background: #fff; color: #000; }
+    model-viewer { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <h1>Machine-Vision Wheel ID Conveyor</h1>
+    <div class="meta">
+      <span>Warehouse entry line — automatic tire/wheel identification</span>
+      <span>Rev. A0 — Concept</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Confirmed Requirements</h2>
+    <table>
+      <tr><th>Max. wheel diameter</th><td>85 cm</td></tr>
+      <tr><th>Max. wheel width</th><td>50 cm</td></tr>
+      <tr><th>Conveyor belt length</th><td>5 m</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Proposed Technical Solution</h2>
+    <table>
+      <tr><th><span class="tag judgment">judgment</span>Conveying</th><td>Single-motor belt, wheel passes flat, no stop or rotation — sufficient for an overhead read</td></tr>
+      <tr><th><span class="tag judgment">judgment</span>Read station</th><td>Floor-standing, light-sealed cabin — blocks outside light for consistent OCR exposure</td></tr>
+      <tr><th><span class="tag judgment">judgment</span>Camera</th><td>1 overhead industrial camera + diffuse LED ring light</td></tr>
+      <tr><th><span class="tag confirmed">confirmed</span>Read target</th><td>Brand logo, size text, DOT code (top-facing sidewall)</td></tr>
+      <tr><th><span class="tag judgment">judgment</span>Control</th><td>Mobile electrical panel (VFD, start/stop, e-stop) — site electrical layout not yet known</td></tr>
+      <tr><th><span class="tag judgment">judgment</span>Operator display</th><td>24" industrial monitor + mini PC at the conveyor head</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>System Flow</h2>
+    <ol class="flow">
+      <li>Wheel placed flat on the belt at the entry point</li>
+      <li>Belt carries it into the light-sealed cabin at constant speed</li>
+      <li>Wheel passes through without stopping; an entry sensor triggers the camera</li>
+      <li>Overhead camera captures the image during the pass</li>
+      <li>Vision software reads brand, size, and DOT code</li>
+      <li>Result appears on the operator display and the inventory record</li>
+      <li>Wheel continues on the belt into the facility</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Concept Renders</h2>
+    <div class="gallery">
+      <img src="images/isometric.png" alt="Isometric view">
+      <img src="images/front.png" alt="Front view">
+      <img src="images/top.png" alt="Top view">
+    </div>
+    <div class="viewer-caption">FreeCAD concept — these are the actual proposed geometry, not a placeholder.</div>
+  </section>
+
+  <section>
+    <h2>Interactive 3D (template feature demo)</h2>
+    <model-viewer src="model/sample.glb" camera-controls auto-rotate
+      shadow-intensity="1" exposure="1" alt="Sample interactive 3D model">
+    </model-viewer>
+    <div class="viewer-caption">
+      Sample placeholder geometry — shows how this template embeds a live, rotatable
+      3D model. Swap <code>model/sample.glb</code> for a real export (from FreeCAD,
+      Onshape, or any CAD tool that exports glTF/GLB) to show the actual design here
+      instead of the static renders above.
+    </div>
+  </section>
+
+  <footer>
+    First-pass concept, same-day turnaround from a two-number brief. Rows marked
+    "judgment" above are engineering assumptions, open to correction — see
+    <a href="https://github.com/rd3n-ai/machine-vision-tire-id-conveyor">the full write-up</a>.
+  </footer>
+</div>
+</body>
+</html>
