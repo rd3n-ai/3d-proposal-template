@@ -34,7 +34,6 @@ in the viewer section to demonstrate the interactive feature — swap
 ## About
 
 Mechanical design engineer (SolidWorks, 11 years, 100+ projects).
-[linkedin.com/in/nizamyuksel](https://www.linkedin.com/in/nizamyuksel/)
 
 ## License
 
