@@ -33,11 +33,8 @@ in the viewer section to demonstrate the interactive feature — swap
 
 ## About
 
-Mechanical design engineer (SolidWorks, 11 years, 100+ projects). This is the
-last piece of the same pipeline shown across this account: fast concept from
-an incomplete brief, CAD-grounded visuals, and a proposal document that
-actually shows the client something they can turn around and rotate.
-<!-- TODO(Nizam): add your LinkedIn/website URL here before publishing -->
+Mechanical design engineer (SolidWorks, 11 years, 100+ projects).
+[linkedin.com/in/nizamyuksel](https://www.linkedin.com/in/nizamyuksel/)
 
 ## License
 
